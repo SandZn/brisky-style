@@ -28,7 +28,7 @@
     "DOM"
   ],
   "dependencies": {
-    "brisky-core": "vigour-io/brisky-core",
+    "brisky-core": "0.0.1",
     "vigour-ua": "^1.0.3",
     "vigour-util": "^2.0.10"
   },
