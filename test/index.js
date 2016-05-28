@@ -65,3 +65,34 @@ test('state styles', function (t) {
 
   t.end()
 })
+
+test('context styles', function (t) {
+  var elem = render({
+    types: {
+      thing: {
+        $: 'thing',
+        foo: {
+          style: {
+            display: {
+              $: true,
+              $transform (val) {
+                return val
+              }
+            }
+          }
+        }
+      }
+    },
+    a: {
+      type: 'thing'
+    },
+    b: {
+      type: 'thing'
+    }
+  }, {
+    thing: 'none'
+  })
+
+  t.equals(elem.childNodes[0].childNodes[0].style.display, 'none', 'add display property using state')
+  t.end()
+})
