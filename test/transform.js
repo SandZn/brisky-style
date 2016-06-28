@@ -19,7 +19,7 @@ test('transform - static', function (t) {
 
 test('transform - state', function (t) {
   const state = s({
-    x: 5,
+    x: -5,
     y: 5,
     rot: 5
   })
@@ -33,6 +33,6 @@ test('transform - state', function (t) {
       }
     }
   }, state)
-  t.equals(elem.style.transform, 'translate3d(5px,5px,0) scale(0.1) rotate(5deg)', 'mixed state and static')
+  t.equals(elem.style.transform, 'translate3d(-5px,5px,0) scale(0.1) rotate(5deg)', 'mixed state and static')
   t.end()
 })
