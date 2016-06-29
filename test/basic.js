@@ -7,11 +7,13 @@ const render = require('brisky-core/render')
 test('basic - static styles', function (t) {
   var elem = render({
     style: {
-      padding: '100px'
+      padding: '100px',
+      opacity: 0.5
     }
   })
 
-  t.equals(elem.style.padding, '100px', 'add style property')
+  t.equal(elem.style.padding, '100px', 'add style property')
+  t.equal(elem.style.opacity, 0.5, 'add style property')
 
   elem = render({
     style: {
