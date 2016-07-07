@@ -2,6 +2,8 @@
 require('brisky-core').prototype.inject(require('../'))
 const test = require('tape')
 const s = require('vigour-state/s')
+const p = require('parse-element')
+
 const render = require('brisky-core/render')
 
 test('basic - static styles', function (t) {
@@ -64,6 +66,23 @@ test('basic - state styles', function (t) {
 
   t.equals(elem.style.display, 'block', 'add display property using state true, update')
 
+  t.end()
+})
+
+test('basic - state - px', function (t) {
+  const state = s({
+    width: 100
+  })
+  const app = render({
+    style: {
+      width: {
+        $: 'width'
+      }
+    }
+  }, state)
+  t.equals(p(app), '<div style="width:100px;"></div>', 'correct initial width')
+  state.width.set(200)
+  t.equals(p(app), '<div style="width:200px;"></div>', 'correct initial width')
   t.end()
 })
 
