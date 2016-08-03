@@ -13,17 +13,14 @@ test('basic - static styles', function (t) {
       opacity: 0.5
     }
   })
-
   t.equal(elem.style.padding, '100px', 'add style property')
-  t.equal(elem.style.opacity, 0.5, 'add style property')
-
+  t.equal(Number(elem.style.opacity), 0.5, 'add style property opacity')
   elem = render({
     style: {
       padding: '100px',
       margin: '50px'
     }
   })
-
   t.true(
     (elem.style.padding === '100px') &&
     (elem.style.margin === '50px'),
@@ -80,9 +77,9 @@ test('basic - state - px', function (t) {
       }
     }
   }, state)
-  t.equals(p(app), '<div style="width:100px;"></div>', 'correct initial width')
+  t.equals(p(app), '<div style="width: 100px;"></div>', 'correct initial width')
   state.width.set(200)
-  t.equals(p(app), '<div style="width:200px;"></div>', 'correct initial width')
+  t.equals(p(app), '<div style="width: 200px;"></div>', 'correct initial width')
   t.end()
 })
 
