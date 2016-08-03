@@ -13,7 +13,7 @@ test('transform - static', function (t) {
       }
     }
   })
-  t.equals(elem.style.transform, 'translate3d(10px,10px,0)', 'x and y')
+  t.equals(elem.style.transform, 'translate3d(10px, 10px, 0px)', 'x and y')
   t.end()
 })
 
@@ -33,6 +33,6 @@ test('transform - state', function (t) {
       }
     }
   }, state)
-  t.equals(elem.style.transform, 'translate3d(-5px,5px,0) scale(0.1) rotate(5deg)', 'mixed state and static')
+  t.equals(elem.style.transform, 'translate3d(-5px, 5px, 0px) scale(0.1) rotate(5deg)', 'mixed state and static')
   t.end()
 })

@@ -4,9 +4,9 @@
   "description": "Adds default and custom style properties to Brisky",
   "main": "lib/index.js",
   "scripts": {
-    "start": "watchify-server test/index.js",
     "test": "(ducktape; node test) | tap-difflet && standard",
     "watch": "nodemon test | tap-difflet",
+    "watch-browser": "budo ./test/index.js:bundle.js -d ./test --css test/bundle.css --pushstate --live -- -r ./package.json:package.json",
     "cover": "istanbul cover --report none --print detail test/index.js",
     "docs": "node_modules/vigour-doc/bin/vdoc",
     "travis": "npm run cover -s && istanbul report lcov && ((cat coverage/lcov.info | coveralls) || exit 0) && standard"
@@ -36,7 +36,7 @@
   },
   "devDependencies": {
     "ducktape": "^1.0.0",
-    "parse-element": "^2.0.0",
+    "parse-element": "^2.0.4",
     "vigour-state": "^4.0.0",
     "coveralls": "^2.11.9",
     "istanbul": "^0.4.3",
@@ -45,8 +45,7 @@
     "standard": "^7.0.1",
     "tap-difflet": "0.4.0",
     "tape": "^4.4.0",
-    "vigour-doc": "^1.1.5",
-    "watchify-server": "^1.0.2"
+    "budo": "^8.2.2"
   },
   "browserify": {
     "transform": [
