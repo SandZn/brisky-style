@@ -4,7 +4,7 @@ const test = require('tape')
 const s = require('vigour-state/s')
 const render = require('brisky-core/render')
 
-test('transform - static', function (t) {
+test('transform - static', (t) => {
   const elem = render({
     style: {
       transform: {
@@ -17,7 +17,7 @@ test('transform - static', function (t) {
   t.end()
 })
 
-test('transform - state', function (t) {
+test('transform - state', (t) => {
   const state = s({
     x: -5,
     y: 5,
@@ -37,29 +37,30 @@ test('transform - state', function (t) {
   t.end()
 })
 
-test('transform - state - remove', function (t) {
+test('transform - state - remove', (t) => {
   const state = s({
-    field: {
-      x: -5,
-      y: 5,
-      rot: 5
-    }
+    a: {
+      y: 5
+    },
+    b: {},
+    field: '$root.a'
   })
   const elem = render({
     field: {
-      $: 'field',
-      style: {
-        transform: {
-          y: { $: 'y' },
-          x: { $: 'x' },
-          rotate: { $: 'rot' },
-          scale: 0.1
+      $: 'field.$switch',
+      properties: {
+        a: {
+          style: {
+            transform: {
+              y: { $: 'y' }
+            }
+          }
         }
       }
     }
   }, state)
-  t.equals(elem.childNodes[0].style.transform, 'translate3d(-5px, 5px, 0px) scale(0.1) rotate(5deg)', 'intial')
-  state.field.remove()
+  t.equals(elem.childNodes[0].childNodes[0].style.transform, 'translate3d(0, 5px, 0px)', 'intial')
+  state.set({ field: '$root.b' })
   t.ok(true, 'should not crash on remove')
   t.end()
 })
