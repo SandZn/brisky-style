@@ -1,6 +1,6 @@
 {
   "name": "brisky-style",
-  "version": "1.2.5",
+  "version": "1.2.6",
   "description": "Adds default and custom style properties to Brisky",
   "main": "lib/index.js",
   "scripts": {
